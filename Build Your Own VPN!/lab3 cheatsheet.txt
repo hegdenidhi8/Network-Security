@@ -1,0 +1,33 @@
+VBoxManage list natnets == gives details of NAT rule including port number for your ssh
+ssh -p 23001 cs528user@localhost == vm1
+ssh -p 23005 cs528user@localhost == vm2
+password cs528pass
+
+tunnel server
+sudo ./simpletun -i tun0 -s -d
+sudo ip addr add 10.0.1.1/24 dev tun0
+sudo ifconfig tun0 up
+
+
+tunnel client 
+sudo ./simpletun -i tun0 -c 192.168.15.4 -d
+sudo ip addr add 10.0.2.1/24 dev tun0
+sudo ifconfig tun0 up
+
+/etc/apt/sources.list == location of sources.list. Which is replaced by given sources.list. Then run following commands.
+
+sudo apt-get update
+sudo apt-get install libssl-dev
+
+openssl req -new -x509 -keyout ca.key -out ca.crt -config openssl.cnf -- Create CA
+gcc -o tlsclient tlsclient.c -lssl -lcrypto compile tlsclient and server programs
+
+passwords for all the certificates generated - hegde22
+
+sudo vi /etc/hosts -- to set the server ip to 192.168.15.4 Nidhi
+
+tshark -i eth0 -f "tcp port 443" -o "ssl.keys_list:443,TLS,rsa,/path/to/keyfile" -o "ssl.debug_file:ssl-debug.txt" -o "ssl.debug_level:4"
+
+
+
+gcc -o HMAC -std=c99 -c HMAC.c -lssl -lcrypto -ldl
