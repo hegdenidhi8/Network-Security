@@ -1,5 +1,3 @@
-Nidhi Hegde
-
 Source Files List:
 header.h
 purenc.c
